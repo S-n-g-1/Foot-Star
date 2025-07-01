@@ -131,6 +131,6 @@ Pemilik proyek: S-n-g-1
 
 ---
 
-> Dibuat dengan semangat open-source 💙 oleh komunitas developer Go.
+> Dibuat dengan semangat open-source 💙 oleh S-n-g-1 developer Go.
 
 
