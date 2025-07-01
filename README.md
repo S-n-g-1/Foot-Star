@@ -34,7 +34,7 @@ Atau gunakan go get (jika tersedia sebagai modul publik)
 
 go get github.com/S-n-g-1/Foot-Star
 
-```
+
 ---
 
 🚀 Contoh Penggunaan
@@ -62,7 +62,7 @@ Foot-Star/
 ├── go.mod               # File modul Go
 └── LICENSE              # Lisensi MIT
 
-
+```
 ---
 
 🧑‍💻 Kontribusi
