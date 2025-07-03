@@ -149,7 +149,7 @@ Foot-Sta
 
 ---
 
-‍💻 Kontribusi
+>‍💻 Kontribusi
 
 Kontribusi sangat terbuka dan disambut! 💡
 
@@ -163,7 +163,7 @@ Kontribusi sangat terbuka dan disambut! 💡
   <li>Buat Pull Request ke branch <code>main</code></li>
 </ol>
 
-🛣️ Roadmap
+>🛣️ Roadmap
 
 <ul>
   <li>[ ] Mode karier pemain</li>
@@ -173,7 +173,7 @@ Kontribusi sangat terbuka dan disambut! 💡
   <li>[ ] Dukungan ekspor hasil pertandingan</li>
 </ul>
 
-📄 Lisensi
+>📄 Lisensi
 
 Proyek ini menggunakan <a href="LICENSE">MIT License</a> — bebas digunakan, dimodifikasi, dan disebarluaskan dengan tetap mencantumkan kredit.
 
