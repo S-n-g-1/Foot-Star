@@ -1,5 +1,3 @@
-
-
 <h1 align="center">⚽ Foot-Star</h1>
 
 <p align="center">
@@ -30,20 +28,15 @@
 Pastikan <b>Go 1.16+</b> sudah terinstal di sistem Anda.
 
 ### Clone & Build Manual
-``bash
+```bash
 
-git clone https://github.com/S-n-g-1/Foot-Star.git
-cd Foot-Star
-go build -o foot-star
-./foot-star
-
-(Opsional) Menggunakan go get
-
-go get github.com/S-n-g-1/Foot-Star
-
+ git clone https://github.com/S-n-g-1/Foot-Star.git
+ 
+ cd Foot-Star
+ go build -o cmd/main.go
+ ./cmd/main.go
 ```
 
----
 
 📁 Struktur Proyek
 
@@ -51,111 +44,112 @@ go get github.com/S-n-g-1/Foot-Star
 Foot-Sta
 .
 ├── ai
-│   ├── match_ai.go
-│   ├── scouting_ai.go
-│   ├── tactic_ai.go
-│   └── transfer_ai.go
+│   ├── match_ai.go
+│   ├── scouting_ai.go
+│   ├── tactic_ai.go
+│   └── transfer_ai.go
 ├── assets
-│   ├── data
-│   │   ├── json
-│   │   │   └── player.json
-│   │   └── sqlite
-│   │       └── Foot-Star.db
-│   └── font
-│       └── PressStart2P-Regular.ttf
+│   ├── data
+│   │   ├── json
+│   │   │   └── player.json
+│   │   └── sqlite
+│   │       └── Foot-Star.db
+│   └── font
+│       └── PressStart2P-Regular.ttf
 ├── cmd
-│   └── main.go
+│   └── main.go
 ├── config
-│   └── default_settings.go
+│   └── default_settings.go
 ├── controllers
-│   ├── akademi_controller.go
-│   ├── club_controller.go
-│   ├── event_controller.go
-│   ├── formasi_controller.go
-│   ├── history_controller.go
-│   ├── jadwal_controller.go
-│   ├── manager_controller.go
-│   ├── match_controller.go
-│   ├── notification_controller.go
-│   ├── pengelolaan_controller.go
-│   ├── player_controller.go
-│   ├── savegame_controller.go
-│   ├── stadion_controller.go
-│   ├── taktik_controller.go
-│   └── transfer_controller.go
+│   ├── akademi_controller.go
+│   ├── club_controller.go
+│   ├── event_controller.go
+│   ├── formasi_controller.go
+│   ├── history_controller.go
+│   ├── jadwal_controller.go
+│   ├── manager_controller.go
+│   ├── match_controller.go
+│   ├── notification_controller.go
+│   ├── pengelolaan_controller.go
+│   ├── player_controller.go
+│   ├── savegame_controller.go
+│   ├── stadion_controller.go
+│   ├── taktik_controller.go
+│   └── transfer_controller.go
 ├── docs
-│   ├── API_REFERENCE.md
-│   ├── DESIGN.md
-│   └── GAME_FLOW.md
+│   ├── API_REFERENCE.md
+│   ├── DESIGN.md
+│   └── GAME_FLOW.md
 ├── go.mod
 ├── go.sum
 ├── locales
-│   ├── en.json
-│   └── id.json
+│   ├── en.json
+│   └── id.json
 ├── models
-│   ├── club.go
-│   ├── commentary.go
-│   ├── history.go
-│   ├── league.go
-│   ├── manager.go
-│   ├── match_event.go
-│   ├── match.go
-│   ├── player.go
-│   ├── schedule.go
-│   ├── tactic.go
-│   ├── transfer.go
-│   ├── type.go
-│   └── youth_player.go
+│   ├── club.go
+│   ├── commentary.go
+│   ├── history.go
+│   ├── league.go
+│   ├── manager.go
+│   ├── match_event.go
+│   ├── match.go
+│   ├── player.go
+│   ├── schedule.go
+│   ├── tactic.go
+│   ├── transfer.go
+│   ├── type.go
+│   └── youth_player.go
 ├── notifications
-│   ├── builder.go
-│   ├── center.go
-│   ├── handler.go
-│   ├── README.md
-│   └── types.go
+│   ├── builder.go
+│   ├── center.go
+│   ├── handler.go
+│   ├── README.md
+│   └── types.go
 ├── README.md
 ├── save
-│   ├── auto_save.json
-│   ├── save1.json
-│   └── save2.json
+│   ├── auto_save.json
+│   ├── save1.json
+│   └── save2.json
 ├── services
-│   ├── match_service.go
-│   ├── scouting_service.go
-│   ├── tactic_service.go
-│   ├── training_service.go
-│   └── transfer_service.go
+│   ├── match_service.go
+│   ├── scouting_service.go
+│   ├── tactic_service.go
+│   ├── training_service.go
+│   └── transfer_service.go
 ├── tests
-│   ├── match_test.go
-│   ├── player_test.go
-│   └── transfer_test.go
+│   ├── match_test.go
+│   ├── player_test.go
+│   └── transfer_test.go
 ├── utils
-│   └── logic.go
+│   └── logic.go
 └── views
     ├── lineup.go
     ├── main_menu.go
     ├── pengelolaan.go
     └── scene
         ├── akademi
-        │   └── akademi.go
+        │   └── akademi.go
         ├── dialog
-        │   └── dialog.go
+        │   └── dialog.go
         ├── formasi
-        │   └── formasi.go
+        │   └── formasi.go
         ├── schedule
-        │   └── jadwal_pertandingan.go
+        │   └── jadwal_pertandingan.go
         ├── stadion
-        │   ├── match_day.go
-        │   ├── stadion.go
-        │   └── upgrade.go
+        │   ├── match_day.go
+        │   ├── stadion.go
+        │   └── upgrade.go
         ├── training
-        │   └── latihan.go
+        │   └── latihan.go
         └── transfer
             ├── daftar_pemain.go
             └── detail_pemain.go
            # Lisensi MIT
 </pre>
+
 ---
 
-🧑‍💻 Kontribusi
+‍💻 Kontribusi
 
 Kontribusi sangat terbuka dan disambut! 💡
 
