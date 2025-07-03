@@ -162,7 +162,6 @@ Kontribusi sangat terbuka dan disambut! 💡
   <li>Push ke branch Anda:<br><code>git push origin fitur/nama-fitur</code></li>
   <li>Buat Pull Request ke branch <code>main</code></li>
 </ol>
----
 
 🛣️ Roadmap
 
@@ -173,7 +172,6 @@ Kontribusi sangat terbuka dan disambut! 💡
   <li>[ ] Porting ke web atau terminal UI</li>
   <li>[ ] Dukungan ekspor hasil pertandingan</li>
 </ul>
----
 
 📄 Lisensi
 
