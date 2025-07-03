@@ -13,6 +13,7 @@ import (
 	"golang.org/x/image/font"
 
 	"Foot-Star/views"
+	"Foot-Star/views/scene/dialog"
 )
 
 var (
@@ -21,7 +22,8 @@ var (
 )
 
 type Game struct {
-	screen string
+ screen       string
+ dialogShown  bool
 }
 
 func init() {
@@ -36,20 +38,43 @@ func init() {
 	}
 	bigFont = truetype.NewFace(tt, &truetype.Options{Size: 28})
 	menuFont = truetype.NewFace(tt, &truetype.Options{Size: 14})
+
+	// Set font untuk package dialog
+	dialog.Font = menuFont
 }
 
 func (g *Game) Update() error {
-	switch g.screen {
-	case "menu":
-		if inpututil.IsKeyJustPressed(ebiten.Key1) {
-			g.screen = "main"
-		}
-	case "main":
-		if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
-			g.screen = "menu"
-		}
-	}
-	return nil
+ switch g.screen {
+ case "menu":
+  if inpututil.IsKeyJustPressed(ebiten.Key1) {
+   if !g.dialogShown {
+    g.screen = "dialog"
+   } else {
+    g.screen = "main" // langsung ke main jika dialog sudah pernah ditampilkan
+   }
+  }
+
+ case "dialog":
+  if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
+   g.screen = "menu"
+   dialog.Reset()
+  }
+  if inpututil.IsKeyJustPressed(ebiten.KeySpace) {
+   if !dialog.IsFinished {
+    dialog.NextDialog()
+   } else {
+    dialog.Reset()
+    g.dialogShown = true // tandai bahwa dialog sudah ditampilkan
+    g.screen = "main"
+   }
+  }
+
+ case "main":
+  if inpututil.IsKeyJustPressed(ebiten.KeyEscape) {
+   g.screen = "menu"
+  }
+ }
+ return nil
 }
 
 func drawRect(screen *ebiten.Image, x, y, w, h int, clr color.Color) {
@@ -62,7 +87,7 @@ func drawRect(screen *ebiten.Image, x, y, w, h int, clr color.Color) {
 
 func centerTextX(face font.Face, textStr string, containerX, containerW int) int {
 	bounds := text.BoundString(face, textStr)
-	textWidth := bounds.Dx() // Lebar dalam satuan pixel
+	textWidth := bounds.Dx()
 	return containerX + (containerW-textWidth)/2
 }
 
@@ -72,24 +97,18 @@ func drawTitleWithShadow(screen *ebiten.Image, title string, x, y int, face font
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	screen.Fill(color.RGBA{25, 25, 25, 255}) // Latar belakang gelap
+	screen.Fill(color.RGBA{25, 25, 25, 255})
 
-	// Ukuran dan posisi container (centered)
 	containerW, containerH := 640, 440
 	containerX := (800 - containerW) / 2
 	containerY := (600 - containerH) / 2
-
-	// Gambar kotak container
-
-	// Garis tengah bantu debugging
-	//drawRect(screen, containerX+containerW/2-1, containerY, 2, containerH, color.RGBA{255, 0, 0, 255})
-
 	const padding = 20
 
 	switch g.screen {
 	case "menu":
 		drawRect(screen, containerX, containerY, containerW, containerH, color.RGBA{45, 45, 45, 255})
-		// Judul game
+
+		// Judul
 		title := "FOOT STAR"
 		titleY := containerY + padding + 40
 		titleX := centerTextX(bigFont, title, containerX, containerW)
@@ -101,15 +120,18 @@ func (g *Game) Draw(screen *ebiten.Image) {
 		startX := centerTextX(menuFont, startText, containerX, containerW)
 		text.Draw(screen, startText, menuFont, startX, startY, color.White)
 
-		// Keterangan tombol
+		// Petunjuk tombol
 		creditText := "Tekan [1] untuk mulai"
 		creditY := startY + 50
 		creditX := centerTextX(menuFont, creditText, containerX, containerW)
 		text.Draw(screen, creditText, menuFont, creditX, creditY, color.RGBA{180, 180, 180, 255})
 
-		// Debug posisi (opsional)
+		// Debug posisi
 		posStr := fmt.Sprintf("TitleX: %d | StartX: %d | CreditX: %d", titleX, startX, creditX)
 		text.Draw(screen, posStr, menuFont, 10, 590, color.RGBA{150, 150, 150, 255})
+
+	case "dialog":
+		dialog.DrawDialogScreen(screen)
 
 	case "main":
 		views.DrawMainMenu(screen)
@@ -125,6 +147,8 @@ func main() {
 	ebiten.SetWindowSize(800, 600)
 
 	game := &Game{screen: "menu"}
+
+	// Callback ke menu dari bagian lain
 	views.OnBackToMainMenu = func() {
 		game.screen = "menu"
 	}
